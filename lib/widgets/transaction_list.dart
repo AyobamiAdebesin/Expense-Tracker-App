@@ -1,58 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:personal_expense_app/models/transaction.dart';
+import 'package:flutter_svg/svg.dart';
 
 class TransactionList extends StatelessWidget {
-  final List transactions;
-
-  TransactionList(this.transactions);
-
+  //const TransactionList({ Key? key }) : super(key: key);
+  final List<Transaction> usertransactions;
+  TransactionList(this.usertransactions);
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      child: ListView.builder(
-        itemBuilder: (ctx, index) {
-          return Card(
-            child: Row(
+      height: 500,
+      child: usertransactions.isEmpty
+          ? Column(
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.purple,
-                    ),
-                  ),
-                  child: Text(
-                    '\$ ${transactions[index].amount.toStringAsFixed(0)}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.purple,
-                    ),
-                  ),
+                Text(
+                  'No transactions added yet!',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      transactions[index].title,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      DateFormat('yyyy-MM-dd').format(transactions[index].date),
-                    ),
-                  ],
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 200,
+                  child: SvgPicture.asset(
+                    'assets/svg/undraw_no_data_re_kwbl.svg',
+                    
+                  ),
                 )
               ],
+            )
+          : ListView.builder(
+              itemBuilder: (ctxs, index) {
+                return Card(
+                  elevation: 10,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          '\$${usertransactions[index].amount.toStringAsFixed(2)}',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            usertransactions[index].title,
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          Text(
+                            usertransactions[index]
+                                .date
+                                .toString()
+                                .substring(0, 11),
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+              itemCount: usertransactions.length,
             ),
-          );
-        },
-        itemCount: transactions.length,
-      ),
     );
   }
 }
