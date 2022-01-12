@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyApp(),
+<<<<<<< HEAD
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
@@ -35,6 +36,8 @@ class HomePage extends StatelessWidget {
               ),
         ),
       ),
+=======
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
     );
   }
 }
@@ -46,6 +49,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final List<Transaction> _usertransactions = [
+<<<<<<< HEAD
     Transaction(
         id: 'tx1', title: 'New Laptop', date: DateTime.now(), amount: 200.00),
     Transaction(
@@ -69,6 +73,24 @@ class _MyAppState extends State<MyApp> {
     }).toList());
   }
 
+=======
+    Transaction(
+        id: 'tx1', title: 'New Laptop', date: DateTime.now(), amount: 200.00),
+    Transaction(
+        id: 'tx2', title: 'New Books', date: DateTime.now(), amount: 120.50),
+    Transaction(
+        id: 'tx3', title: 'New Courses', date: DateTime.now(), amount: 100.67),
+    Transaction(
+        id: 'tx4', title: 'New Shoes', date: DateTime.now(), amount: 150.20),
+    Transaction(
+        id: 'tx5', title: 'New Phone', date: DateTime.now(), amount: 90.40),
+    Transaction(
+        id: 'tx6', title: 'New Wifi', date: DateTime.now(), amount: 70.53),
+    Transaction(
+        id: 'tx7', title: 'New Charger', date: DateTime.now(), amount: 80.00),
+  ];
+
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
   void _addNewTransaction(String txtitle, double txamount) {
     final newTxn = Transaction(
         id: DateTime.now().toString(),
@@ -84,17 +106,22 @@ class _MyAppState extends State<MyApp> {
     showModalBottomSheet(
       context: ctx,
       builder: (_) {
+<<<<<<< HEAD
         return GestureDetector(
           child: NewTransaction(_addNewTransaction),
           onTap: () {},
           behavior: HitTestBehavior.opaque,
         );
+=======
+        return NewTransaction(_addNewTransaction);
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -118,6 +145,49 @@ class _MyAppState extends State<MyApp> {
             Chart(_recentTransactions),
             TransactionList(_usertransactions),
           ],
+=======
+    return MediaQuery(
+      data: MediaQueryData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () => _startAddNewTransaction(context),
+                icon: Icon(Icons.add),
+              ),
+            ],
+            title: Text('Personal Expense Tracker'),
+            backgroundColor: Colors.deepPurpleAccent,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  child: Card(
+                    color: Colors.blue,
+                    child: Text(
+                      'Chart!',
+                      textAlign: TextAlign.center,
+                    ),
+                    elevation: 10,
+                  ),
+                ),
+                TransactionList(_usertransactions),
+              ],
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton(
+            elevation: 10,
+            onPressed: () => _startAddNewTransaction(context),
+            child: Icon(Icons.add),
+          ),
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+<<<<<<< HEAD
 class NewTransaction extends StatefulWidget {
   //const NewTransaction({ Key? key }) : super(key: key);
   final Function addTx;
@@ -12,9 +13,19 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
+=======
+class NewTransaction extends StatelessWidget {
+  //const NewTransaction({ Key? key }) : super(key: key);
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
   final titleController = TextEditingController();
 
   final amountController = TextEditingController();
+<<<<<<< HEAD
+=======
+  final Function addTx;
+
+  NewTransaction(this.addTx);
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -23,9 +34,13 @@ class _NewTransactionState extends State<NewTransaction> {
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
+<<<<<<< HEAD
     // widget. allows us to access the properties or methods of the widgett class
     // inside of the state class
     widget.addTx(
+=======
+    addTx(
+>>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
       enteredTitle,
       enteredAmount,
     );
