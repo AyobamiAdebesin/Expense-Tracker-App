@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expense_app/models/transaction.dart';
-<<<<<<< HEAD
-import 'package:flutter_svg/svg.dart';
-=======
->>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
 
 class TransactionList extends StatelessWidget {
   //const TransactionList({ Key? key }) : super(key: key);
@@ -12,18 +8,12 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-<<<<<<< HEAD
-      height: 500,
-      child: usertransactions.isEmpty
-          ? Column(
-=======
       height: 300,
       child: ListView.builder(
         itemBuilder: (ctxs, index) {
           return Card(
             elevation: 10,
             child: Row(
->>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
               children: <Widget>[
                 Text(
                   'No transactions added yet!',
@@ -33,13 +23,6 @@ class TransactionList extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-<<<<<<< HEAD
-                  height: 200,
-                  child: SvgPicture.asset(
-                    'assets/svg/undraw_no_data_re_kwbl.svg',
-                    
-                  ),
-=======
                   margin: EdgeInsets.symmetric(
                     vertical: 10,
                     horizontal: 15,
@@ -75,7 +58,6 @@ class TransactionList extends StatelessWidget {
                       ),
                     ),
                   ],
->>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
                 )
               ],
             )
@@ -128,13 +110,10 @@ class TransactionList extends StatelessWidget {
               },
               itemCount: usertransactions.length,
             ),
-<<<<<<< HEAD
-=======
           );
         },
         itemCount: usertransactions.length,
       ),
->>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
     );
   }
 }
