@@ -16,28 +16,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyApp(),
-<<<<<<< HEAD
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-        fontFamily: 'Quicksand',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                  fontFamily: 'Opensans',
-                  fontWeight: FontWeight.w200,
-                  fontSize: 18),
-            ),
-        appBarTheme: AppBarTheme(
-          textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
-                  fontFamily: 'Opensans',
-                  fontSize: 20,
-                ),
-              ),
-        ),
-      ),
-=======
->>>>>>> f48a109c45a3f67d7539d6eaa9553c5c945f8fd7
     );
   }
 }
