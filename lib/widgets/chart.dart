@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expense_app/widgets/chart_bar.dart';
-import '../models/transaction.dart';
 import 'package:intl/intl.dart';
+
+import './chart_bar.dart';
+import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
   Chart(this.recentTransactions);
 
-  // Getters are properties which are calculated dynamically
-  // groupedTransactionValues are transaction values grouped by weekday
-
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
-      final weekDay = DateTime.now().subtract(Duration(days: index));
+      final weekDay = DateTime.now().subtract(
+        Duration(days: index),
+      );
       var totalSum = 0.0;
 
       for (var i = 0; i < recentTransactions.length; i++) {
@@ -23,41 +23,39 @@ class Chart extends StatelessWidget {
           totalSum += recentTransactions[i].amount;
         }
       }
-      print(DateFormat.E().format(weekDay));
-      print(totalSum);
 
       return {
-        'Day': DateFormat.E().format(weekDay).substring(0, 1),
-        'amount': totalSum
+        'day': DateFormat.E().format(weekDay).substring(0, 1),
+        'amount': totalSum,
       };
     });
   }
 
-  double get maxSpending {
+  double get totalSpending {
     return groupedTransactionValues.fold(0.0, (sum, item) {
-      return sum + (item['amount'] as double);
+      return sum + (item['amount'] as num);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(groupedTransactionValues);
     return Card(
-      elevation: 10,
+      elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Container(
-        padding: EdgeInsets.all(20),
+      child: Padding(
+        padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((data) {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                  data['Day'].toString(),
-                  (data['amount'] as double),
-                  maxSpending == 0.0
-                      ? 0.0
-                      : (data['amount'] as double) / maxSpending),
+                (data['day'] as String),
+                (data['amount'] as double),
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
             );
           }).toList(),
         ),

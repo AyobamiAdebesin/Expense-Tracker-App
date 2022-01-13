@@ -1,12 +1,14 @@
 class Transaction {
   final String id;
   final String title;
-  final DateTime date;
   final double amount;
+  final DateTime date;
 
-  Transaction(
-      {required this.id,
-      required this.title,
-      required this.date,
-      required this.amount});
+  Transaction({
+    required this.id,
+    required this.title,
+    required this.amount,
+    required this.date,
+  });
 }
+

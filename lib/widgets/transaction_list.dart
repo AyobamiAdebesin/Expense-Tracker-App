@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expense_app/models/transaction.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  //const TransactionList({ Key? key }) : super(key: key);
-  final List<Transaction> usertransactions;
-  TransactionList(this.usertransactions);
+  final List<Transaction> transactions;
+
+  TransactionList(this.transactions);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: ListView.builder(
-        itemBuilder: (ctxs, index) {
-          return Card(
-            elevation: 10,
-            child: Row(
+      child: transactions.isEmpty
+          ? Column(
               children: <Widget>[
                 Text(
                   'No transactions added yet!',
@@ -23,48 +24,15 @@ class TransactionList extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 15,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.all(5),
-                  child: Text(
-                    '\$${usertransactions[index].amount.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple,
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      usertransactions[index].title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      usertransactions[index].date.toString().substring(0, 11),
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                )
+                    height: 200,
+                    child: SvgPicture.asset(
+                      'assets/svg/undraw_no_data_re_kwbl.svg',
+                    )),
               ],
             )
           : ListView.builder(
-              itemBuilder: (ctxs, index) {
+              itemBuilder: (ctx, index) {
                 return Card(
-                  elevation: 10,
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -73,16 +41,18 @@ class TransactionList extends StatelessWidget {
                           horizontal: 15,
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 2),
                           borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 2,
+                          ),
                         ),
                         padding: EdgeInsets.all(5),
                         child: Text(
-                          '\$${usertransactions[index].amount.toStringAsFixed(2)}',
+                          '\$${transactions[index].amount.toStringAsFixed(2)}',
                           style: TextStyle(
-                            fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            fontSize: 15,
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),
@@ -90,30 +60,23 @@ class TransactionList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            usertransactions[index].title,
+                            transactions[index].title,
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Text(
-                            usertransactions[index]
-                                .date
-                                .toString()
-                                .substring(0, 11),
+                            DateFormat.yMMMd().format(transactions[index].date),
                             style: TextStyle(
                               color: Colors.grey,
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 );
               },
-              itemCount: usertransactions.length,
+              itemCount: transactions.length,
             ),
-          );
-        },
-        itemCount: usertransactions.length,
-      ),
     );
   }
 }
